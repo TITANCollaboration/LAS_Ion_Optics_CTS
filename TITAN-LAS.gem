@@ -98,7 +98,7 @@
 
 # --------------------------------------------
 
-pa_define(640,4000,280,p,none,electrostatic, $(dx), $(dy), $(dz), surface=fractional)
+pa_define(640,4400,280,p,none,electrostatic, $(dx), $(dy), $(dz), surface=fractional)
 
 # -- Sample Holder ---------------------------
 locate(0,$(y_offset),$(z_offset),1,0,0,0){
@@ -289,5 +289,5 @@ e(115) { rotate_fill(360) { within { polyline(0,$(fc_collector_head_IR), 0, $(fc
 # y_offset = y_offset + fc_cross_length - fc_body_cap_length - fc_collector_offset -  fc_def_length - fc_body_offset
 # -- End Cap -----------------------------------------------------------
 locate($(x_offset),$(y_offset),$(z_offset),1,0,90,0){
-e(116) { rotate_fill(360) { within { box(0, 0, 25, $(fc_cross_OR)) } } }
+e(116) { rotate_fill(360) { within { box(0, 0, 3, $(fc_cross_OR)) } } }
 }
