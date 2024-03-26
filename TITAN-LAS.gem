@@ -98,7 +98,7 @@
 
 # --------------------------------------------
 
-pa_define(640,4400,280,p,none,electrostatic, $(dx), $(dy), $(dz), surface=fractional)
+pa_define(640,4480,280,p,none,electrostatic, $(dx), $(dy), $(dz), surface=fractional)
 
 # -- Sample Holder ---------------------------
 locate(0,$(y_offset),$(z_offset),1,0,0,0){
