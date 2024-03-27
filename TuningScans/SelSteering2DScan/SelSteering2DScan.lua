@@ -8,10 +8,10 @@ simion.workbench_program()
 local ycenter = 35         -- center of circle in y
 local zcenter = 35         -- center of circle in z
 local rad_target = 4       -- radius of circle
-local npoints = 65         -- number of points in scan (increment = (2*range)/(n-1)) 33
+local npoints = 33         -- number of points in scan (increment = (2*range)/(n-1)) 33
 local sel_center = 0       -- voltage for extraction y,z steering at center of target
 local sel_range = 45       -- one-direction range of extraction y,z steering (-ext_*_range, ext_*_range)
-local nvolts = 41          -- number of voltages in extraction steering scan range (increment = (2*range)/(n-1)) 41
+local nvolts = 33          -- number of voltages in extraction steering scan range (increment = (2*range)/(n-1)) 41
 
 local excel_enable = 0  -- Use Excel? (1=yes, 0=no)
 
@@ -167,16 +167,11 @@ function segment.other_actions()
     sim_update_pe_surface = 1
   end
   -- These if conditionals are checked each time-step on each ion in the run. Very useful for recording individual ion data at some point in the run.
-  
-  --ensure ion is not sneaking around the cup  
-  if(rec_pos1~=ion_number and ion_py_mm >= 934 and (ion_pz_mm>=40 or ion_pz_mm<=30 or ion_px_mm>=110 or ion_px_mm<=93))
-  then
-    rec_pos1 = ion_number
-  end
+
   -- record ion location at faraday cup aperture
-  if (ion_py_mm >= 933 and ion_py_mm<= 944.1 and rec_pos1 ~= ion_number and ion_px_mm>=98 and ion_px_mm<=106 and ion_pz_mm>=31.3 and ion_pz_mm<=38.5)
+  if (ion_py_mm >= 1057 and ion_py_mm<= 1065.5 and rec_pos1 ~= ion_number and ion_px_mm>=99 and ion_px_mm<=104 and ion_pz_mm>=33 and ion_pz_mm<=37)
   then
-    data_rec[5] = (abs(ion_px_mm - 101.6625)^2 + abs(ion_pz_mm - 35)^2)^0.5
+    data_rec[5] = (abs(ion_px_mm - 101.625)^2 + abs(ion_pz_mm - 35)^2)^0.5
     rec_pos1 = ion_number
   end
   -- Record info when ion splats
