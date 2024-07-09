@@ -28,11 +28,6 @@ This workbench has a user program that defines some helpful variables for playin
 - **sel_focus:** adjusts all center segments of the SEL to this voltage for primary focusing
 - **sel_x:** symetrically adjusts the SEL steering in the x direction (positive steers right)
 - **sel_z:** symetrically adjusts the SEL steering in the z direction (positive steers up)
-- **capture_focus:** adjusts focusing of capture optics lens
-- **capture_x:** symetrically adjusts the capture optics steering in the x direction (positive steers right)
-- **capture_z:** symetrically adjusts the capture optics steering in the z direction (positive steers up)
-- **capture_dec:** adjusts final decel electrode and ramp electrodes together (are connected by resistors in real device)
-- **iRFQ:** adjusts bias on input RFQ
 
 ### IonInitialConditions
 
