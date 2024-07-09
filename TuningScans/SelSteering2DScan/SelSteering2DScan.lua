@@ -11,7 +11,7 @@ local rad_target = 4       -- radius of circle
 local npoints = 33         -- number of points in scan (increment = (2*range)/(n-1)) 33
 local sel_center = 0       -- voltage for extraction y,z steering at center of target
 local sel_range = 45       -- one-direction range of extraction y,z steering (-ext_*_range, ext_*_range)
-local nvolts = 33          -- number of voltages in extraction steering scan range (increment = (2*range)/(n-1)) 41
+local nvolts = 41          -- number of voltages in extraction steering scan range (increment = (2*range)/(n-1)) 41
 
 local excel_enable = 0  -- Use Excel? (1=yes, 0=no)
 
@@ -85,7 +85,7 @@ end
 function segment.flym()
   sim_trajectory_image_control = 1 -- don't keep trajectories
 
-file = io.open("data\\ke_20_sel_-1870\\IonStartLocationSteering_nvolts_41_npoints_65.csv", "w")
+file = io.open("data\\ke_20_sel_-1870\\IonStartLocationSteering_nvolts_"..nvolts.."_npoints_"..npoints..".csv", "w")
 --file:write("Generated from IonStartLocation.iob\nYpos,Zpos,ExtElec,Bender,SEL,RFQ,CaptureElec,End")
 file:write("Generated from SelSteering2DScan.iob\nnumber of ions = "..nions.."\nBender = "..bender.."V\nSEL focus = "..sel_focus.."V\nYpos,Zpos,Sel_x,Sel_z,IonPosition")
   -- Step through all positions
@@ -168,15 +168,18 @@ function segment.other_actions()
   end
   -- These if conditionals are checked each time-step on each ion in the run. Very useful for recording individual ion data at some point in the run.
 
+--[[ Commented out for analysis on all ion splat locations 
   -- record ion location at faraday cup aperture
   if (ion_py_mm >= 1057 and ion_py_mm<= 1065.5 and rec_pos1 ~= ion_number and ion_px_mm>=99 and ion_px_mm<=104 and ion_pz_mm>=33 and ion_pz_mm<=37)
   then
     data_rec[5] = (abs(ion_px_mm - 101.625)^2 + abs(ion_pz_mm - 35)^2)^0.5
     rec_pos1 = ion_number
   end
+  ]]
   -- Record info when ion splats
   if (ion_splat ~= 0)
   then
+    data_rec[5] = (abs(ion_px_mm - 101.625)^2 + abs(ion_pz_mm - 35)^2)^0.5
     file:write('\n',tostring(table.concat(data_rec, ", ")))
   end
 end

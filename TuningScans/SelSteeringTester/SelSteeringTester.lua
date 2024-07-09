@@ -8,7 +8,7 @@ simion.workbench_program()
 local ycenter = 35         -- center of circle in y
 local zcenter = 35         -- center of circle in z
 local rad_target = 4       -- radius of circle
-local npoints = 11         -- number of points in scan (increment = (2*range)/(n-1)) 33
+local npoints = 33         -- number of points in scan (increment = (2*range)/(n-1)) 33
 
 local excel_enable = 0  -- Use Excel? (1=yes, 0=no)
 
@@ -75,41 +75,41 @@ c_ez[16] = -9.3333e-05      -- c33
 
 -- SEL x-axis steering 
 local c_selx ={}
-c_selx[1] = 1124894.15
-c_selx[2] = -104767.189
-c_selx[3] = 3288.35522
-c_selx[4] = -34.0630628
-c_selx[5] = -93610.9305
-c_selx[6] =  8782.80544
-c_selx[7] = -277.559376
-c_selx[8] =  2.89210910
-c_selx[9] = 2617.75171
-c_selx[10] = -246.632727
-c_selx[11] =  7.82622913
-c_selx[12] = -0.08183974
-c_selx[13] = -24.6721674
-c_selx[14] =  2.32562408
-c_selx[15] = -0.07386662
-c_selx[16] =   7.7319e-04
+c_selx[1] = 748496.083 
+c_selx[2] =-71649.2679 
+c_selx[3] = 2320.22507 
+c_selx[4] =-24.6546336 
+c_selx[5] =  -60594.4856
+c_selx[6] =  5891.45662
+c_selx[7] = -193.421122 
+c_selx[8] =  2.07805079 
+c_selx[9] = 1654.18132 
+c_selx[10] = -162.625848
+c_selx[11] =  5.39225511 
+c_selx[12] =-0.05839078 
+c_selx[13] = -15.3180703 
+c_selx[14] =  1.51354023 
+c_selx[15] =  -0.05043525
+c_selx[16] =  5.4838e-04 
 
 -- SEL z-axis steering 
 local c_selz = {}
-c_selz[1] = 3350320.03
-c_selz[2] = -290538.665
-c_selz[3] = 8374.95416
-c_selz[4] = -80.2894896
-c_selz[5] = -296441.934 
-c_selz[6] = 25657.4201
-c_selz[7] = -738.859717
-c_selz[8] = 7.08281292
-c_selz[9] = 8685.32911
-c_selz[10] = -750.470560
-c_selz[11] =  21.5943440
-c_selz[12] =  -0.20701956
-c_selz[13] = -84.8682669
-c_selz[14] =  7.32222013
-c_selz[15] = -0.21055299
-c_selz[16] =  0.00201881
+c_selz[1] = 3428072.10 
+c_selz[2] = -298812.302
+c_selz[3] =  8656.37520
+c_selz[4] = -83.3884932
+c_selz[5] = -301530.462 
+c_selz[6] =  26228.1872
+c_selz[7] = -758.947422
+c_selz[8] =  7.30940590
+c_selz[9] =  8785.08958
+c_selz[10] = -762.769744
+c_selz[11] =   22.0513945
+c_selz[12] =  -0.21236214
+c_selz[13] = -85.3958907
+c_selz[14] =  7.40219029
+c_selz[15] = -0.21382083
+c_selz[16] =   0.00205918
 
 -- Define a function to calculate the steering voltage based on y,z position using 3rd order polynmial surface
 function DynamicSteerVoltage_Order3(y, z, c)
@@ -138,7 +138,7 @@ end
 function segment.flym()
   sim_trajectory_image_control = 1 -- don't keep trajectories
 
-file = io.open("data\\IonStartLocationSteering_ke_20_sel_-1870.csv", "w")
+file = io.open("data\\IonStartLocationSteeringTester_ke_20_sel_-1870.csv", "w")
 --file:write("Generated from IonStartLocation.iob\nYpos,Zpos,ExtElec,Bender,SEL,RFQ,CaptureElec,End")
 file:write("Generated from SelSteeringTester.iob\nnumber of ions = "..nions.."\nBender = "..bender.."V\nSEL focus = "..sel_focus.."V\nYpos,Zpos,Sel_x,Sel_z,IonSplatPos, IonCollectorPos")
   -- Step through all positions
@@ -216,15 +216,15 @@ function segment.other_actions()
   end
   -- These if conditionals are checked each time-step on each ion in the run. Very useful for recording individual ion data at some point in the run.
   -- record ion location at faraday cup aperture
-  if (ion_py_mm >= 933 and ion_py_mm<= 944.1 and rec_pos1 ~= ion_number and ion_px_mm>=98 and ion_px_mm<=106 and ion_pz_mm>=31.3 and ion_pz_mm<=38.5)
+  if (ion_py_mm >= 1056.5 and ion_py_mm<= 1065.6 and rec_pos1 ~= ion_number and ion_px_mm>=98.9 and ion_px_mm<=104.5 and ion_pz_mm>=32.5 and ion_pz_mm<=37.5)
   then
-    data_rec[6] = (abs(ion_px_mm - 101.6625)^2 + abs(ion_pz_mm - 35)^2)^0.5
+    data_rec[6] = (abs(ion_px_mm - 101.625)^2 + abs(ion_pz_mm - 35)^2)^0.5
     rec_pos1 = ion_number
   end
   -- Record info when ion splats
   if (ion_splat ~= 0)
   then
-    data_rec[5] = (abs(ion_px_mm - 101.6625)^2 + abs(ion_pz_mm - 35)^2)^0.5
+    data_rec[5] = (abs(ion_px_mm - 101.625)^2 + abs(ion_pz_mm - 35)^2)^0.5
     file:write('\n',tostring(table.concat(data_rec, ", ")))
   end
 end
