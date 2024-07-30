@@ -25,7 +25,7 @@ mass_dict = {"Cu63":63, "Cu65":65, "Nb93":93, "Pd100":100, "Pd103":103,
              "Pa231":231,"Th232":232, "U235":235, "U238":238, "Ac277":277}
 
 
-periodic_dict = {"Al":26.982, "Cu":63.546, "Ag":107.87, 
+periodic_dict = {"Al":26.982,"Ti":47.867, "Cu":63.546, "Ag":107.87, 
                 "Au":196.97, "Pb":207.20, "Th":232.04, 
                 "Fe":55.845, "Cr":51.99, "W":183.84,"Ni":58.693, "Mo": 95.95} #stainless steel 304 contains Fe, Cr, Ni, Mn, Mo
 
@@ -125,4 +125,4 @@ t_table.index = table_rows_time
 #display(t_table)
 
 print(L_dt_table)
-print(t_table)
+print(t_table["Ti"])
