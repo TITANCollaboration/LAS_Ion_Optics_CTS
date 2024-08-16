@@ -36,6 +36,9 @@ table_rows_mass = []
 
 table_data_time = {}
 table_rows_time = []
+
+table_data_tof = {}
+table_rows_tof = []
 L_dt_fixed = 0.6096 # 2ft
 
 
@@ -111,8 +114,10 @@ for key in periodic_dict:
         else: #Same mass on diagonal
             table_data_time[key].append("N/a")
                   
-
-
+    #Making the table of time of flight of the species themselves:
+    table_rows_tof.append(key)  
+    table_data_tof[key] = t_total_fixedL
+              
 #Run code in jupyter notebook with display() to make the table look better
 L_dt_table = pd.DataFrame(table_data_mass)
 L_dt_table.index = table_rows_mass
@@ -124,5 +129,9 @@ t_table.index = table_rows_time
 #t_table = t_table.style.set_caption("Maximum Time Window for Resolution (us)")
 #display(t_table)
 
+
+
 print(L_dt_table)
-print(t_table["Ti"])
+print(t_table)
+print(table_data_tof)
+
