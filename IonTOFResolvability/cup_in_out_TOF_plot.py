@@ -19,7 +19,7 @@ t_window = switch_time+total_jitter
 
 periodic_dict = {"Al":26.982, "Cu":63.546, "Ag":107.87, 
                 "Au":196.97, "Pb":207.20, "Th":232.04, 
-                "Fe":55.845, "Cr":51.99, "W":183.84, "Ni":58.693, "Mo": 95.95} #Stainless steel 304 contains Fe, Cr, Ni, Mn, Mo 
+                "Fe":55.845, "Cr":51.99, "W":183.84, "Ni":58.693, "Mo": 95.95, "Ti":47.867} #Stainless steel 304 contains Fe, Cr, Ni, Mn, Mo 
 
 periodic_dict = dict(sorted(periodic_dict.items(), key=lambda item: item[1]))
 
