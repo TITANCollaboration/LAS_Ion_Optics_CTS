@@ -14,6 +14,7 @@ optical_jitter = 4e-7 #This value is for the one-sided window (needs doubling to
 arduino_jitter = 2.4e-7
 
 total_jitter = np.sqrt(arduino_jitter**2+optical_jitter**2)
+#print(total_jitter)
 
 t_window = switch_time+total_jitter
 
@@ -47,7 +48,9 @@ for key in periodic_dict:
 
     color_ind =(color_ind+1)%len(colors)
 
-ax.vlines([0.120, 0.855],0,300)
+ax.vlines(0.120,0,300,label = "Close FC", color = "red")
+ax.vlines(0.855, 0,300,label = "Full Drift", color = "blue")
+ax.vlines(0.245, 0,300,label = "Without DT", color = "green")
 ax.legend()
 ax.set_xlabel("Length of Drift Post Einzel lens(m)")
 ax.set_ylabel("Mass (amu)")
