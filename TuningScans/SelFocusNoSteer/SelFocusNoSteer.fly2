@@ -1,0 +1,24 @@
+local var = _G.var or {}
+local ypos = var.ypos or 35
+local zpos = var.zpos or 35
+local nions = var.nions or 100
+local half_angle = var.half_angle or 10
+local filled = var.filled or true
+particles {
+  coordinates = 0,
+  standard_beam {
+    n = nions,
+    tob = 0,
+    mass = 50,
+    charge = 1,
+    ke = 20,
+    cwf = 1,
+    color = 1,
+    direction = cone_direction_distribution {
+      axis = vector(1, 0, 0),
+      half_angle = half_angle,
+      fill = filled
+    },
+    position = vector(14, 35, 35)
+  }
+}
